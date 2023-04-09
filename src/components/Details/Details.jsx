@@ -10,7 +10,7 @@ function DetailsPage() {
     return (<>
         {/* The title and Image are called here */}
         <h1>{detailStore[0].title}</h1>
-        <img src={detailStore[0].poster} alt="" />
+        <img src={detailStore[0].poster}/>
         {/* the genre array is called here and i map through them to list them individually */}
         {genreInfo.map((genre, i) => 
             <p key={i}>{genre}</p>
