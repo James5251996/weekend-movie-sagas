@@ -20,6 +20,8 @@ function MovieList() {
                     return (
                         <div key={movie.id} >
                             <h3>{movie.title}</h3>
+                            {/* here is where i am calling my dispatch to send the movie id in the payload
+                            to be used to get the details for a selected movie */}
                             <img onClick={() => dispatch({
                                 type: 'GET_DETAILS',
                                 payload: movie.id

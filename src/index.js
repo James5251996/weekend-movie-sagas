@@ -30,6 +30,7 @@ function* fetchAllMovies() {
         
 }
 
+// here is where the details for a given movie is stored 
 const detailsReducer = (state = {}, action) => {
     switch(action.type) {
         case 'SHOW_DETAILS':
@@ -40,11 +41,19 @@ const detailsReducer = (state = {}, action) => {
     }
 }
 
+// here is the saga to link up with the dispatch request in MovieList
+// This will send the data from the selectred movie to the detailsReducer
 function* getMovieDetails (action) {
     console.log('inside my get movies details', action.payload)
+    const genreArray = []
     try {
     const movieDetails = yield axios.get(`/api/movie/${action.payload}`)
+    for (let genre of movieDetails.data){
+        genreArray.push(genre.name)
+    }
+    console.log(genreArray);
     yield put({type: 'SHOW_DETAILS', payload: movieDetails.data})
+    yield put({type: 'SET_GENRES', payload: genreArray})
     } catch (error) {
         console.log('error in getMovieDetails:', error)
     }
