@@ -11,6 +11,7 @@ function MovieList() {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
 
+
     return (
         <main>
             <h1>MovieList</h1>
@@ -19,7 +20,10 @@ function MovieList() {
                     return (
                         <div key={movie.id} >
                             <h3>{movie.title}</h3>
-                            <img src={movie.poster} alt={movie.title}/>
+                            <img onClick={() => dispatch({
+                                type: 'GET_DETAILS',
+                                payload: movie.id
+                            })} src={movie.poster} alt={movie.title} />
                         </div>
                     );
                 })}

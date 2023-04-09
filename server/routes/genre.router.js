@@ -8,7 +8,7 @@ router.get('/:id', (req, res) => {
   JOIN movies_genres ON movies.id = movies_genres.movie_id
   JOIN genres ON movies_genres.genre_id = genres.id
   WHERE movies.id = $1
-  Group BY movies.title, genres.name, movies.description, movies.poster`;
+  GROUP BY movies.title, genres.name, movies.description, movies.poster;`;
 
   // this query will make the reuest in the databas to get the data based on the movie id entered.
   pool.query(sqlText, [req.params.id])
