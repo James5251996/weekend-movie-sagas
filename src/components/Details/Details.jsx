@@ -3,17 +3,21 @@ import { useSelector } from "react-redux";
 
 
 function DetailsPage() {
+    // here are my store calls to get the data that is stored in the reducers in the index file
     const detailStore = useSelector(store => store.detailsReducer)
     const genreInfo = useSelector(store => store.genres)
 
     return (<>
-        <div>TEST</div>
+        {/* The title and Image are called here */}
         <h1>{detailStore[0].title}</h1>
         <img src={detailStore[0].poster} alt="" />
+        {/* the genre array is called here and i map through them to list them individually */}
         {genreInfo.map((genre, i) => 
-            <p>{genre}</p>
+            <p key={i}>{genre}</p>
         )}
+        {/* The description is shown here */}
         <p>{detailStore[0].description}</p>
+        {/* a button linked to bring a user back to the movie list page. */}
         <Router>
             <Link to='/'>
                 <button>Back to Movies</button>
